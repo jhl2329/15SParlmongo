@@ -89,7 +89,7 @@ create or replace trigger nl_notification_list_PK_trig
 before insert on nl_notification_list
 for each row 
 begin 
-select nl_notification_list_seq.nextval into :new.notification_list from dual; 
+select nl_notification_list_seq.nextval into :new.notification_list_id from dual; 
 end; 
 /
 alter table nl_notification_list add created date ; 
@@ -198,13 +198,11 @@ begin
 end; 
 /
 
-DROP INDEX nl_members_member_id_FK_0 ;
-CREATE INDEX nl_members_member_id_FK_0 ON nl_documents(nl_members_member_id) ;
-DROP INDEX nl_members_member_id_FK_1 ;
-CREATE INDEX nl_members_member_id_FK_1 ON r1(nl_members_member_id) ;
-DROP INDEX nl_notification_list_n_FK_2 ;
-CREATE INDEX nl_notification_list_n_FK_2 ON r1(nl_notification_list_notification_list) ;
-DROP INDEX nl_notification_list_n_FK_3 ;
-CREATE INDEX nl_notification_list_n_FK_3 ON r2(nl_notification_list_notification_list) ;
-DROP INDEX nl_notification_list_n_FK_4 ;
-CREATE INDEX nl_notification_list_n_FK_4 ON r2(nl_notification_list_notification_list1) ;
+DROP INDEX member_id_FK_0 ;
+CREATE INDEX member_id_FK_0 ON r1(member_id) ;
+DROP INDEX list_id_FK_1 ;
+CREATE INDEX list_id_FK_1 ON r1(list_id) ;
+DROP INDEX list_id1_FK_2 ;
+CREATE INDEX list_id1_FK_2 ON r2(list_id1) ;
+DROP INDEX list_id2_FK_3 ;
+CREATE INDEX list_id2_FK_3 ON r2(list_id2) ;
